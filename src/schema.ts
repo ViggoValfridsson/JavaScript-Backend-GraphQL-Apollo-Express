@@ -8,9 +8,13 @@ export const typeDefs = gql`
     user(id: ID!): User
   }
 
+  type Mutation {
+    userCreate(user: UserInput!): UserPayload
+  }
+
   type User {
-    id: ID!,
-    name: String!,
+    id: ID!
+    name: String!
     description: String!
     posts: [Post!]!
   }
@@ -20,5 +24,19 @@ export const typeDefs = gql`
     title: String!
     content: String!
     user: User!
+  }
+
+  type UserPayload {
+    userErrors: [UserError!]!
+    user: User
+  }
+
+  type UserError {
+    message: String!
+  }
+
+  input UserInput {
+    name: String!
+    description: String!
   }
 `;

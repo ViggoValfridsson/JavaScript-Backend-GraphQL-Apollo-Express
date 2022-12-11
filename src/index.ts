@@ -4,6 +4,7 @@ import express from "express";
 import http from "http";
 import { typeDefs } from "./schema";
 import { Query, User, Post } from "./resolvers";
+import { Mutation } from "./resolvers/Mutation/Mutation";
 
 async function startApolloServer() {
   const app = express();
@@ -12,6 +13,7 @@ async function startApolloServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers: {
+      Mutation,
       Query,
       User,
       Post,
