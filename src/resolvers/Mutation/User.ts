@@ -89,4 +89,25 @@ export const userResolvers = {
       }),
     };
   },
+  userDelete: async (_: any, { id }: { id: string }): Promise<UserPayloadType> => {
+    const user = await Users.findById(id);
+
+    if (!user) {
+      return {
+        userErrors: [
+          {
+            message: "Could not find user",
+          },
+        ],
+        user: null,
+      };
+    }
+
+    await Users.delete(id);
+
+    return {
+      userErrors: [],
+      user: user,
+    };
+  },
 };
