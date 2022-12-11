@@ -12,6 +12,7 @@ export const typeDefs = gql`
     userCreate(user: UserInput!): UserPayload!
     userUpdate(id: ID!, user: UserInput!): UserPayload!
     userDelete(id: ID!): UserPayload!
+    postCreate(post: PostInput!): PostPayload!
   }
 
   type User {
@@ -33,6 +34,11 @@ export const typeDefs = gql`
     user: User
   }
 
+  type PostPayload {
+    userErrors: [UserError!]!
+    post: Post
+  }
+
   type UserError {
     message: String!
   }
@@ -40,5 +46,11 @@ export const typeDefs = gql`
   input UserInput {
     name: String
     description: String
+  }
+
+  input PostInput {
+    title: String
+    content: String
+    authorId: String
   }
 `;
