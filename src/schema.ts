@@ -9,7 +9,8 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    userCreate(user: UserInput!): UserPayload
+    userCreate(user: UserInput!): UserPayload!
+    userUpdate(id: ID! user: UserInput!): UserPayload!
   }
 
   type User {
@@ -36,7 +37,7 @@ export const typeDefs = gql`
   }
 
   input UserInput {
-    name: String!
-    description: String!
+    name: String
+    description: String
   }
 `;
