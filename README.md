@@ -1,3 +1,7 @@
+# Introduction
+
+To start the server simply run the command "npm 
+
 # Query examples:
 
 - Query for all users and their posts:
