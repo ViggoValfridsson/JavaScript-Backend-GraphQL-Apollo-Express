@@ -1,6 +1,7 @@
 # Introduction
 
-To start the server simply run the command "npm 
+- To start the server simply run the command "npm run start:dev"
+- The project includes dummy data
 
 # Query examples:
 
