@@ -2,6 +2,7 @@
 
 - To start the server simply run the command "npm run start:dev"
 - The project includes dummy data
+- When performing update mutations you don't need to provide all arguments.
 
 # Query examples:
 
