@@ -118,4 +118,25 @@ export const postResolvers = {
       }),
     };
   },
+  postDelete: async (_: any, { id }: { id: string }): Promise<PostPayloadType> => {
+    const post = await Posts.findById(id);
+
+    if (!post) {
+      return {
+        userErrors: [
+          {
+            message: "Could not find post, please provide a valid id.",
+          },
+        ],
+        post: null,
+      };
+    }
+
+    await Posts.delete(id);
+
+    return {
+      userErrors: [],
+      post,
+    };
+  },
 };

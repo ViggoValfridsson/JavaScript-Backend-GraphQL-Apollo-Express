@@ -180,3 +180,24 @@ mutation {
   }
 }
 ```
+
+- Delete post:
+
+```graphql
+mutation {
+  postDelete(id: "1") {
+    userErrors {
+      message
+    }
+    post {
+      title
+      content
+      id
+      user {
+        name
+        id
+      }
+    }
+  }
+}
+```

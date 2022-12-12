@@ -14,6 +14,7 @@ export const typeDefs = gql`
     userDelete(id: ID!): UserPayload!
     postCreate(post: PostInput!): PostPayload!
     postUpdate(id: ID!, post: PostInput!): PostPayload!
+    postDelete(id: ID!): PostPayload
   }
 
   type User {
