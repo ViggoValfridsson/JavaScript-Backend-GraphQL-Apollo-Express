@@ -116,7 +116,7 @@ mutation {
 }
 ```
 
-- Delete user
+- Delete user:
 
 ```graphql
 mutation {
@@ -137,7 +137,7 @@ mutation {
 }
 ```
 
-- Create a new post
+- Create a new post:
 
 ```graphql
 mutation {
@@ -154,6 +154,27 @@ mutation {
     }
     userErrors {
       message
+    }
+  }
+}
+```
+
+- Update post:
+
+```graphql
+mutation {
+  postUpdate(post: { title: "New title", content: "New content", authorId: "2" }, id: "1") {
+    userErrors {
+      message
+    }
+    post {
+      title
+      id
+      content
+      user {
+        name
+        id
+      }
     }
   }
 }

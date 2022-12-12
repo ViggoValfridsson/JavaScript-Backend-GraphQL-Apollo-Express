@@ -1,5 +1,4 @@
 import { Posts, Users } from "../../../db/database";
-import { User } from "../User";
 
 interface PostArgs {
   post: {
@@ -56,6 +55,66 @@ export const postResolvers = {
         title,
         authorId,
         content,
+      }),
+    };
+  },
+  postUpdate: async (_: any, { id, post }: { id: string; post: PostArgs["post"] }): Promise<PostPayloadType> => {
+    const { title, content, authorId } = post;
+
+    if (!title && !content && !authorId) {
+      return {
+        userErrors: [
+          {
+            message: "You must provide new information to update a post",
+          },
+        ],
+        post: null,
+      };
+    }
+
+    const postToUpdate = await Posts.findById(id);
+
+    if (!postToUpdate) {
+      return {
+        userErrors: [
+          {
+            message: "Could not find post to update",
+          },
+        ],
+        post: null,
+      };
+    }
+
+    let updatePayload: any = {};
+
+    if (title) {
+      updatePayload.title = title;
+    }
+    if (content) {
+      updatePayload.content = content;
+    }
+    if (authorId) {
+      const newUser = await Users.findById(authorId);
+
+      if (!newUser) {
+        return {
+          userErrors: [
+            {
+              message: "Could not find user",
+            },
+          ],
+          post: null,
+        };
+      }
+
+      updatePayload.authorId = authorId;
+    }
+
+    return {
+      userErrors: [],
+      post: await Posts.update({
+        ...postToUpdate,
+        ...updatePayload,
       }),
     };
   },

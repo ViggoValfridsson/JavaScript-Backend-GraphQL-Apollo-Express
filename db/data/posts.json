@@ -1,9 +1,9 @@
 [
   {
     "id": "1",
-    "title": "Viggos post",
-    "content": "Content 1",
-    "authorId": "1"
+    "title": "New title",
+    "content": "New content",
+    "authorId": "2"
   },
   {
     "id": "2",
